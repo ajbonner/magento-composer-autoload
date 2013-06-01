@@ -1,6 +1,6 @@
 {
     "name": "ajbonner/mage-composer-autoload",
-    "description": "Make magento composer vendor library aware",
+    "description": "Extension of Magento's class autoloader making it composer vendor library aware",
     "type": "magento-module",
     "license": "MIT",
     "authors": [
@@ -10,35 +10,6 @@
     }
     ],
     "require": {
-        "php": ">=5.3.0",
-    },
-    "repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/magento-hackathon/magento-composer-installer"
+        "php": ">=5.3.0"
     }
-    ],
-    "autoload": {
-        "psr-0": {
-            "": [
-                "vendor/magento/app",
-                "vendor/magento/app/code/local",
-                "vendor/magento/app/code/community",
-                "vendor/magento/app/code/core",
-                "vendor/magento/lib",
-                "app",
-                "app/code/local",
-                "app/code/community",
-                "app/code/core",
-                "lib"
-            ]
-        }
-    },
-    "extra":{
-        "magento-root-dir": "./"
-    },
-    "config": {
-        "bin-dir": "shell"
-    },
-    "minimum-stability": "dev"
 }
