@@ -1,5 +1,5 @@
 {
-    "name": "ajbonner/mage-composer-autoload",
+    "name": "ajbonner/magento-composer-autoload",
     "description": "Extension of Magento's class autoloader making it composer vendor library aware",
     "type": "magento-module",
     "license": "MIT",
