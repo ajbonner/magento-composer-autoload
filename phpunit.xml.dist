@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         strict="true"
+         processIsolation="true"
+         verbose="true">
+  <testsuites>
+    <testsuite name="Magento Composer Autoloader">
+      <directory suffix="Test.php">test</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
