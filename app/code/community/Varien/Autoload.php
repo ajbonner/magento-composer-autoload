@@ -57,17 +57,21 @@ class Varien_Autoload
      * Determine basedir and include composer autoloader
      *
      * Assumes composer libraries are installed in a directory called 'vendor'
-     * which exists in the magento basedir. 
+     * which exists in the magento basedir or the in parent to basedir
      *
-     * Things are overly complicated by get.php failing to initialize 
-     * the standard basepath (BP) and directory separator (DS) constants 
+     * Things are overly complicated by get.php failing to initialize
+     * the standard basepath (BP) and directory separator (DS) constants
      */
     protected function bootstrapComposer()
     {
         $ds = DIRECTORY_SEPARATOR;
         $bp = $this->basePath();
-        
-        require_once  $bp . $ds . 'vendor' .  $ds . 'autoload.php';
+
+        $require_file = $bp . $ds . 'vendor' .  $ds . 'autoload.php';
+        if (!file_exists($require_file)) {
+            $require_file = $bp . $ds . '..' . $ds . 'vendor' .  $ds . 'autoload.php';
+        }
+        require_once $require_file;
     }
 
     /**
