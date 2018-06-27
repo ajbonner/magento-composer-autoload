@@ -10,17 +10,17 @@
  * http://opensource.org/licenses/osl-3.0.php
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
+ * to license@magento.com so we can send you a copy immediately.
  *
  * DISCLAIMER
  *
  * Do not edit or add to this file if you wish to upgrade Magento to newer
  * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
+ * needs please refer to http://www.magento.com for more information.
  *
  * @category   Varien
  * @package    Varien_Autoload
- * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @copyright  Copyright (c) 2006-2018 Magento, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -45,6 +45,7 @@ class Varien_Autoload
     public function __construct()
     {
         $this->bootstrapComposer();
+        register_shutdown_function(array($this, 'destroy'));
         $this->_isIncludePathDefined = defined('COMPILER_INCLUDE_PATH');
         if (defined('COMPILER_COLLECT_PATH')) {
             $this->_collectClasses  = true;
@@ -85,8 +86,8 @@ class Varien_Autoload
             return BP;
         } else {
             $upOneDir = $ds . '..';
-            return realpath(dirname(__FILE__) 
-                . $upOneDir 
+            return realpath(dirname(__FILE__)
+                . $upOneDir
                 . $upOneDir
                 . $upOneDir
                 . $upOneDir
@@ -147,7 +148,7 @@ class Varien_Autoload
     {
         self::$_scope = $code;
         if (defined('COMPILER_INCLUDE_PATH')) {
-            @include COMPILER_INCLUDE_PATH . DIRECTORY_SEPARATOR . self::SCOPE_FILE_PREFIX.$code.'.php';
+            @include_once COMPILER_INCLUDE_PATH . DIRECTORY_SEPARATOR . self::SCOPE_FILE_PREFIX.$code.'.php';
         }
     }
 
@@ -164,7 +165,7 @@ class Varien_Autoload
     /**
      * Class destructor
      */
-    public function __destruct()
+    public function destroy()
     {
         if ($this->_collectClasses) {
             $this->_saveCollectedStat();
