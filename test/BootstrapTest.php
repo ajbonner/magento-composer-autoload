@@ -1,31 +1,31 @@
 <?php
 
-class BootstrapTest extends PHPUnit_Framework_TestCase
+declare(strict_types=1);
+
+use PHPUnit\Framework\TestCase;
+
+class BootstrapTest extends TestCase
 {
     public function setUp()
     {
         require_once $this->varienAutoloaderClassPath();
     }
 
-    public function testRequiresComposerAutoloaderWhenBasePathConstantsDefined()
+    public function testRequiresComposerAutoloaderWhenBasePathConstantsDefined(): void
     {
-        define('BP', realpath(dirname(__FILE__) . '/../'));
+        define('BP', realpath(__DIR__ . '/../'));
         $autoloader = new Varien_Autoload();
         $this->assertTrue(COMPOSER_AUTOLOADER_LOADED);
     }
 
-    public function testRequiresComposerAutoloaderWhenBasePathConstantsUndefined()
+    public function testRequiresComposerAutoloaderWhenBasePathConstantsUndefined(): void
     {
         $autoloader = new Varien_Autoload();
         $this->assertTrue(COMPOSER_AUTOLOADER_LOADED);
     }
 
-    /**
-     * @return string
-     */
-    protected function varienAutoloaderClassPath()
+    protected function varienAutoloaderClassPath(): string
     {
-        $ds = DIRECTORY_SEPARATOR;
-        return 'app' . $ds . 'code' . $ds . 'community' . $ds . 'Varien' . $ds . 'Autoload.php';
+        return implode(DIRECTORY_SEPARATOR, ['app', 'code', 'community', 'Varien', 'Autoload.php']);
     }
 }

@@ -3,7 +3,6 @@
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
-         strict="true"
          processIsolation="true"
          verbose="true">
   <testsuites>
