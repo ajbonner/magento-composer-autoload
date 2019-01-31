@@ -18,8 +18,8 @@
  * versions in the future. If you wish to customize Magento for your
  * needs please refer to http://www.magento.com for more information.
  *
- * @category    Varien
- * @package     Varien_Autoload
+ * @category   Varien
+ * @package    Varien_Autoload
  * @copyright  Copyright (c) 2006-2018 Magento, Inc. (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
@@ -44,8 +44,8 @@ class Varien_Autoload
      */
     public function __construct()
     {
-        $this->bootstrapComposer();
         register_shutdown_function(array($this, 'destroy'));
+        $this->bootstrapComposer();
         $this->_isIncludePathDefined = defined('COMPILER_INCLUDE_PATH');
         if (defined('COMPILER_COLLECT_PATH')) {
             $this->_collectClasses  = true;
